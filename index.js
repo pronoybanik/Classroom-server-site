@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = 5000;
-require("dotenv").config();
 const mongoose = require("mongoose");
+require("dotenv").config();
 require("colors");
 
 
@@ -11,7 +11,9 @@ app.use(cors());
 app.use(express.json());
 
 
+const classRoute = require('./routes/class.route');
 
+app.use('/api/v1/classList', classRoute);
 
 // Data Base Connection
 mongoose.connect(process.env.DATABASE_URL,).then(() => {
@@ -20,13 +22,12 @@ mongoose.connect(process.env.DATABASE_URL,).then(() => {
 
 
 app.get("/", (req, res) => {
-    res.send("Life Server Server RunIng")
+    res.send("Class Room Server Runing")
 });
 
 app.listen(port, (req, res) => {
-    console.log(`Life site server${port}`.bgRed);
+    console.log(`Class Room server${port}`.bgRed);
 });
 
 module.exports = app;
-
 
