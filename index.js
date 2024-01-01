@@ -10,10 +10,12 @@ require("colors");
 app.use(cors());
 app.use(express.json());
 
-
 const classRoute = require('./routes/class.route');
+const userInfo = require('./routes/userInfo.route');
+
 
 app.use('/api/v1/classList', classRoute);
+app.use('/api/v1/userInfo', userInfo);
 
 // Data Base Connection
 mongoose.connect(process.env.DATABASE_URL,).then(() => {

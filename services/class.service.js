@@ -14,3 +14,4 @@ exports.getClassByIdService = async (id) => {
     const store = await Class.findOne({ _id: id })
     return store;
 };
+
