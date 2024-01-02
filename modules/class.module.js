@@ -16,7 +16,7 @@ const classSchema = mongoose.Schema({
     },
     classCode: {
         type: String,
-        required: true
+        
     },
 
     email: {
@@ -27,6 +27,12 @@ const classSchema = mongoose.Schema({
     imageURLs: {
         type: String,
     },
+    classRole: {
+        type: String,
+        enum: ["student", "teacher"],
+        default: "student"
+
+    }
 
 }, {
     timestamps: true,
