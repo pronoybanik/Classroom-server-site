@@ -1,7 +1,10 @@
 const mongoose = require("mongoose")
+const { ObjectId } = mongoose.Schema.Types;
 
 const assignmentSchema = mongoose.Schema({
-
+    classListId: {
+        type: ObjectId,
+    },
     email: {
         type: String,
         require: true
@@ -17,9 +20,14 @@ const assignmentSchema = mongoose.Schema({
     },
     pdfValue: {
         type: String,
-    }
-
-})
+    },
+    name: {
+        type: String,
+    },
+    currentDate: {
+        type: String
+    },
+});
 
 const Assignment = mongoose.model("assignmentData", assignmentSchema);
 

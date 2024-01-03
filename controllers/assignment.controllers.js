@@ -1,4 +1,4 @@
-const { getAllAssignmentService, createAssignmentService } = require("../services/assingment.service");
+const { getAllAssignmentService, createAssignmentService, getAssignmentByIdService } = require("../services/assingment.service");
 
 exports.createAssignment = async (req, res) => {
     try {
@@ -33,6 +33,25 @@ exports.getAllAssignment = async (req, res) => {
         res.status(400).json({
             status: "fail",
             message: " Data can not fetch",
+            error: error.message,
+        });
+    }
+};
+
+exports.getAssignmentById = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const stock = await getAssignmentByIdService(id);
+
+        res.status(200).json({
+            status: "success",
+            data: stock,
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: "fail",
+            message: "Can't get the store",
             error: error.message,
         });
     }

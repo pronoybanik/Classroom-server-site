@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllAssignment, createAssignment, setPdf } = require("../controllers/assignment.controllers");
+const { getAllAssignment, createAssignment, setPdf, getAssignmentById } = require("../controllers/assignment.controllers");
 // const multer = require('multer');
 const router = express.Router();
 
@@ -18,6 +18,8 @@ const router = express.Router();
 
 
 router.route("/").get(getAllAssignment).post(createAssignment);
+
+router.route("/:id").get(getAssignmentById)
 
 // router.route("/upload-file", upload.single("file")).post(setPdf);
 
