@@ -16,8 +16,12 @@ exports.getAllClassService = async () => {
 };
 
 exports.getClassByIdService = async (id) => {
-    ref: "classList"
-    const store = await Class.findOne({ _id: id }).populate("classWork").populate("studentList");
+    const store = await Class.findOne({ _id: id }).populate("classWork").populate("studentList").populate("groupChat");
     return store;
+};
+
+exports.deleteClassListByIdService = async (id) => {
+    const result = await Class.deleteOne({ _id: id });
+    return result;
 };
 

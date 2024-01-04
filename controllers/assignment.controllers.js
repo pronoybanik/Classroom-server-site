@@ -1,4 +1,4 @@
-const { getAllAssignmentService, createAssignmentService, getAssignmentByIdService } = require("../services/assingment.service");
+const { getAllAssignmentService, createAssignmentService, getAssignmentByIdService, updateAssignmentByIdService } = require("../services/assingment.service");
 
 exports.createAssignment = async (req, res) => {
     try {
@@ -57,20 +57,22 @@ exports.getAssignmentById = async (req, res) => {
     }
 };
 
-// exports.setPdf = async (req, res) => {
-//     try {
-//         console.log(req.file);
-//         const filePath = req.file.filename;
-//         res.status(200).json({
-//             status: "success",
-//             message: "Data inserted successfully!",
-//             data: filePath
-//         });
-//     } catch (error) {
-//         res.status(400).json({
-//             status: "fail",
-//             message: " Data is not inserted",
-//             error: error.message,
-//         });
-//     }
-// };
+
+
+exports.updateAssignmentById = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const result = await updateAssignmentByIdService(id, req.body);
+
+        res.status(200).json({
+            status: "success",
+            message: "Successfully updated the product",
+        })
+    } catch (error) {
+        res.status(400).json({
+            status: "fail",
+            message: "Couldn't update the product",
+            error: error.message,
+        });
+    }
+};

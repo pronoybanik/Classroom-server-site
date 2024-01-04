@@ -1,4 +1,4 @@
-const { createClassService, getAllClassService, getClassByIdService } = require("../services/class.service");
+const { createClassService, getAllClassService, getClassByIdService, deleteClassListByIdService } = require("../services/class.service");
 
 exports.createClass = async (req, res) => {
     try {
@@ -52,6 +52,31 @@ exports.getClassById = async (req, res) => {
         res.status(400).json({
             status: "fail",
             message: "Can't get the store",
+            error: error.message,
+        });
+    }
+};
+
+exports.deleteClassListById = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const result = await deleteClassListByIdService(id);
+
+        if (!result.deletedCount) {
+            return res.status(400).json({
+                status: "fail",
+                error: "Couldn't delete the product"
+            })
+        } else {
+            res.status(200).json({
+                status: "success",
+                message: "Successfully deleted the product",
+            });
+        }
+    } catch (error) {
+        res.status(400).json({
+            status: "fail",
+            message: "Couldn't delete the product",
             error: error.message,
         });
     }

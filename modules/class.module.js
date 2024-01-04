@@ -5,6 +5,9 @@ const classSchema = mongoose.Schema({
     teacherId: {
         type: ObjectId  
     },
+    studentImage: {
+        type: String,
+    },
     className: {
         type: String,
     },
@@ -47,7 +50,11 @@ const classSchema = mongoose.Schema({
     ],
     currentDate: {
         type: String,
-    }
+    },
+    groupChat: [{
+        type: ObjectId,
+        ref: "chatInfo"
+    }]
 });
 
 const Class = mongoose.model('classList', classSchema)

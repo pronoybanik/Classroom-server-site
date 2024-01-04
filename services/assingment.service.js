@@ -17,7 +17,22 @@ exports.getAllAssignmentService = async () => {
     return result;
 };
 exports.getAssignmentByIdService = async (id) => {
-    const result = await Assignment.findOne({ _id: id });
+    const result = await Assignment.findOne({ _id: id }).populate("privateChatInfo");
+    return result;
+};
+
+
+exports.updateAssignmentByIdService = async (id, data) => {
+
+    const result = await Assignment.updateOne(
+        { _id: id },
+        data,
+        {
+            runValidators: true,
+        }
+    );
+    console.log(result);
+
     return result;
 };
 
