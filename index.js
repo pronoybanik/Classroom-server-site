@@ -15,11 +15,13 @@ app.use("/pdfFiles", express.static("pdfFiles"));
 const classRoute = require('./routes/class.route');
 const userInfo = require('./routes/userInfo.route');
 const assignment = require('./routes/assignment.route');
+const chatInfo = require('./routes/chat.route');
 
 
 app.use('/api/v1/classList', classRoute);
 app.use('/api/v1/userInfo', userInfo);
 app.use('/api/v1/assignment', assignment);
+app.use('/api/v1/chatInfo', chatInfo);
 
 // Multer code...
 const storage = multer.diskStorage({

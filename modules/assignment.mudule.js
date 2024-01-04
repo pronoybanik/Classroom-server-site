@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema.Types;
 
 const assignmentSchema = mongoose.Schema({
@@ -7,7 +7,6 @@ const assignmentSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        require: true
     },
     title: {
         type: String
@@ -27,6 +26,13 @@ const assignmentSchema = mongoose.Schema({
     currentDate: {
         type: String
     },
+    homeWorkData: {
+        type: String
+    },
+    privateChatInfo: [{
+        type: ObjectId,
+        ref: "chatInfo"
+    }]
 });
 
 const Assignment = mongoose.model("assignmentData", assignmentSchema);
