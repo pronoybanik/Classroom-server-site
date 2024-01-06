@@ -9,6 +9,14 @@ exports.getAllUserService = async () => {
     const classData = await UserInfo.find({});
     return classData;
 };
+exports.getEmailUserService = async (data) => {
+    const classData = await UserInfo.findOne({ email: data });
+    return classData;
+};
+exports.getIdUserService = async (id) => {
+    const classData = await UserInfo.findOne({ _id: id });
+    return classData;
+};
 
 
 

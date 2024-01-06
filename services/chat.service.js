@@ -25,3 +25,7 @@ exports.getChatService = async () => {
     const result = await Chat.find({});
     return result;
 }
+exports.getChatByIdService = async (id) => {
+    const result = await Chat.findOne({ _id: id });
+    return result;
+}

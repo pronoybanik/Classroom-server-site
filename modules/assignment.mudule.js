@@ -26,8 +26,11 @@ const assignmentSchema = mongoose.Schema({
     currentDate: {
         type: String
     },
-    homeWorkData: {
+    homeWorkImage: {
         type: String
+    },
+    assignmentMark: {
+        type: Number
     },
     privateChatInfo: [{
         type: ObjectId,

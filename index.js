@@ -32,9 +32,9 @@ const storage = multer.diskStorage({
         const uniqueSuffix = Date.now()
         cb(null, uniqueSuffix + file.originalname)
     }
-})
+});
 
-const upload = multer({ storage: storage })
+const upload = multer({ storage: storage });
 
 app.post("/upload-file", upload.single("file"), async (req, res) => {
     try {
