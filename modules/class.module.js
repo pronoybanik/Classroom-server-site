@@ -3,7 +3,7 @@ const { ObjectId } = mongoose.Schema.Types;
 
 const classSchema = mongoose.Schema({
     teacherId: {
-        type: ObjectId  
+        type: ObjectId
     },
     studentImage: {
         type: String,

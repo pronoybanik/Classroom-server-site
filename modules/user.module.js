@@ -7,10 +7,18 @@ const userInfoSchema = mongoose.Schema({
         type: String,
         required: [true, "Please provide a name for this product."],
     },
-
+    name: {
+        type: String
+    },
     password: {
         type: String,
-        required: true
+        default: null
+    },
+
+    userRole: {
+        type: String,
+        enum: ["student", "teacher", "admin"],
+        default: "student",
     },
 
 }, {
