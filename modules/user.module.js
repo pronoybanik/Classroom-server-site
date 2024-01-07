@@ -14,7 +14,6 @@ const userInfoSchema = mongoose.Schema({
         type: String,
         default: null
     },
-
     userRole: {
         type: String,
         enum: ["student", "teacher", "admin"],

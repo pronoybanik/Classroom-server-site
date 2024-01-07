@@ -1,21 +1,25 @@
 const UserInfo = require("../modules/user.module");
 
 exports.SaveUserInfoService = async (data) => {
-    const classData = await UserInfo.create(data);
-    return classData;
+    const userData = await UserInfo.create(data);
+    return userData;
 };
 
 exports.getAllUserService = async () => {
-    const classData = await UserInfo.find({});
-    return classData;
+    const userData = await UserInfo.find({});
+    return userData;
 };
 exports.getEmailUserService = async (data) => {
-    const classData = await UserInfo.findOne({ email: data });
-    return classData;
+    const userData = await UserInfo.findOne({ email: data });
+    return userData;
 };
 exports.getIdUserService = async (id) => {
-    const classData = await UserInfo.findOne({ _id: id });
-    return classData;
+    const userData = await UserInfo.findOne({ _id: id });
+    return userData;
+};
+exports.deleteUserByIdService = async (id) => {
+    const userData = await UserInfo.deleteOne({ _id: id });
+    return userData;
 };
 
 
