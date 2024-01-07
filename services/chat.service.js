@@ -6,17 +6,15 @@ exports.createChatService = async (data) => {
     const result = await Chat.create(data);
     const { _id: chatId, assignmentId, classId } = result;
     if (assignmentId) {
-        const data = await Assignment.updateOne(
+        await Assignment.updateOne(
             { _id: assignmentId },
             { $push: { privateChatInfo: chatId } }
         );
-        console.log("assingme", data);
     } else {
-        const chatData = await Class.updateOne(
+        await Class.updateOne(
             { _id: classId },
             { $push: { groupChat: chatId } }
         );
-        console.log("chatdata", chatData);
     }
     return result;
 };

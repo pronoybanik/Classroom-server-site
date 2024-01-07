@@ -1,4 +1,4 @@
-const { SaveUserInfoService, getAllUserService, getEmailUserService, getIdUserService } = require("../services/userInfo.service");
+const { SaveUserInfoService, getAllUserService, getEmailUserService, getIdUserService, deleteUserByIdService } = require("../services/userInfo.service");
 
 exports.SaveUserInfo = async (req, res) => {
     try {
@@ -21,7 +21,6 @@ exports.SaveUserInfo = async (req, res) => {
 
 exports.allUser = async (req, res) => {
     try {
-        // save or create
         const data = await getAllUserService();
 
         res.status(200).json({
@@ -41,8 +40,6 @@ exports.allUser = async (req, res) => {
 exports.getEmailUser = async (req, res) => {
     try {
         const email = req.params.email;
-
-        // save or create
         const data = await getEmailUserService(email);
 
         res.status(200).json({
@@ -62,19 +59,38 @@ exports.getEmailUser = async (req, res) => {
 exports.getIdUser = async (req, res) => {
     try {
         const id = req.params.id;
-
-        // save or create
-        const data = await getIdUserService(id);
+        await getIdUserService(id);
 
         res.status(200).json({
             status: "success",
             message: " get user successfully!",
             data: data
         });
+
     } catch (error) {
         res.status(400).json({
             status: "fail",
             message: " Data can not fetch",
+            error: error.message,
+        });
+    }
+};
+
+exports.deleteUserById = async (req, res) => {
+    try {
+        const id = req.params.id;
+        await deleteUserByIdService(id);
+
+        res.status(200).json({
+            status: "success",
+            message: "Delete user successfully!",
+
+        });
+
+    } catch (error) {
+        res.status(400).json({
+            status: "fail",
+            message: "user is Not Delete",
             error: error.message,
         });
     }

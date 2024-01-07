@@ -21,7 +21,7 @@ exports.createAssignment = async (req, res) => {
 
 exports.getAllAssignment = async (req, res) => {
     try {
-        // save or create
+        
         const data = await getAllAssignmentService();
 
         res.status(200).json({

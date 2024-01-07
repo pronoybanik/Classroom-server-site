@@ -21,7 +21,7 @@ exports.createClass = async (req, res) => {
 
 exports.getAllClass = async (req, res) => {
     try {
-        // save or create
+     
         const data = await getAllClassService();
 
         res.status(200).json({

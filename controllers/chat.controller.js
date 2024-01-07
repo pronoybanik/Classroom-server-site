@@ -21,7 +21,7 @@ exports.createChat = async (req, res) => {
 
 exports.getAllChat = async (req, res) => {
     try {
-        // save or create
+        
         const data = await getChatService(req.body);
 
         res.status(200).json({
@@ -40,7 +40,7 @@ exports.getAllChat = async (req, res) => {
 
 exports.getChatById = async (req, res) => {
     try {
-        // save or create
+        
         const  {id} = req.params;
 
         const data = await getChatByIdService(id);
