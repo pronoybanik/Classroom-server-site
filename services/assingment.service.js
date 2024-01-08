@@ -22,7 +22,7 @@ exports.getAssignmentByIdService = async (id) => {
 };
 
 
-exports.updateAssignmentByIdService = async (id, data) => {
+exports.updateAssignmentByIdService = async (id, data) => {   
     const result = await Assignment.updateOne(
         { _id: id },
         data,

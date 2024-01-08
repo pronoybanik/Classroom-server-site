@@ -29,6 +29,9 @@ const assignmentSchema = mongoose.Schema({
     homeWorkImage: {
         type: String
     },
+    homeWorkPDF: {
+        type: String
+    },
     assignmentMark: {
         type: Number
     },
