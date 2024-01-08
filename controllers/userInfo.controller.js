@@ -59,7 +59,7 @@ exports.getEmailUser = async (req, res) => {
 exports.getIdUser = async (req, res) => {
     try {
         const id = req.params.id;
-        await getIdUserService(id);
+        const data = await getIdUserService(id);
 
         res.status(200).json({
             status: "success",
@@ -84,7 +84,6 @@ exports.deleteUserById = async (req, res) => {
         res.status(200).json({
             status: "success",
             message: "Delete user successfully!",
-
         });
 
     } catch (error) {
