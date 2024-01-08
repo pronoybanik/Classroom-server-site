@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const multer = require('multer');
 require("dotenv").config();
 require("colors");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
+
 
 app.use(cors());
 app.use(express.json());
@@ -23,7 +25,7 @@ app.use('/api/v1/userInfo', userInfo);
 app.use('/api/v1/assignment', assignment);
 app.use('/api/v1/chatInfo', chatInfo);
 
-// Multer code...
+// Multer code start...
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './pdfFiles')
@@ -52,6 +54,36 @@ app.post("/upload-file", upload.single("file"), async (req, res) => {
         });
     }
 });
+// Multer code End..
+
+// stripe code start
+app.post("/create-payment-intent", async (req, res) => {
+    const { price } = req.body;
+    const amount = price * 100;
+
+    try {
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: amount,
+            currency: "usd",
+            payment_method_types: ['card'],
+        });
+
+        res.status(200).json({
+            status: "success",
+            message: "payment success",
+            clientSecret: paymentIntent.client_secret
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({
+            status: "fail",
+            message: " Token in note found",
+            error: error.message,
+        });
+    }
+});
+
+
 
 
 // Data Base Connection
