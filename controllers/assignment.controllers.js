@@ -1,4 +1,4 @@
-const { getAllAssignmentService, createAssignmentService, getAssignmentByIdService, updateAssignmentByIdService } = require("../services/assingment.service");
+const { getAllAssignmentService, createAssignmentService, getAssignmentByIdService, updateAssignmentByIdService, deleteAssignmentByIdService } = require("../services/assingment.service");
 
 exports.createAssignment = async (req, res) => {
     try {
@@ -21,7 +21,7 @@ exports.createAssignment = async (req, res) => {
 
 exports.getAllAssignment = async (req, res) => {
     try {
-        
+
         const data = await getAllAssignmentService();
 
         res.status(200).json({
@@ -72,6 +72,24 @@ exports.updateAssignmentById = async (req, res, next) => {
         res.status(400).json({
             status: "fail",
             message: "Couldn't update the product",
+            error: error.message,
+        });
+    }
+};
+
+exports.deleteAssignmentById = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const result = await deleteAssignmentByIdService(id);
+
+        res.status(200).json({
+            status: "success",
+            message: "Delete  Assignment Successfully ",
+        })
+    } catch (error) {
+        res.status(400).json({
+            status: "fail",
+            message: "Couldn't Delete Assignment",
             error: error.message,
         });
     }

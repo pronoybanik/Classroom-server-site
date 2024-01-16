@@ -33,7 +33,7 @@ const assignmentSchema = mongoose.Schema({
         type: String
     },
     assignmentMark: {
-        type: Number
+        type: String
     },
     privateChatInfo: [{
         type: ObjectId,

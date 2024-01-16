@@ -22,7 +22,7 @@ exports.getAssignmentByIdService = async (id) => {
 };
 
 
-exports.updateAssignmentByIdService = async (id, data) => {   
+exports.updateAssignmentByIdService = async (id, data) => {
     const result = await Assignment.updateOne(
         { _id: id },
         data,
@@ -30,6 +30,10 @@ exports.updateAssignmentByIdService = async (id, data) => {
             runValidators: true,
         }
     );
+    return result;
+};
+exports.deleteAssignmentByIdService = async (id) => {
+    const result = await Assignment.deleteOne({ _id: id });
     return result;
 };
 
