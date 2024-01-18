@@ -32,10 +32,10 @@ exports.updateAssignmentByIdService = async (id, data) => {
     );
     return result;
 };
+
 exports.deleteAssignmentByIdService = async (id) => {
     const result = await Assignment.deleteOne({ _id: id });
     return result;
 };
-
 
 

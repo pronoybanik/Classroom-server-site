@@ -14,6 +14,18 @@ const userInfoSchema = mongoose.Schema({
         type: String,
         default: null
     },
+    fatherName: {
+        type: String,
+    },
+    motherName: {
+        type: String
+    },
+    mobileNumber: {
+        type: String
+    },
+    dateOfBirth: {
+        type: String
+    },
     userRole: {
         type: String,
         enum: ["student", "teacher", "admin"],
