@@ -25,3 +25,14 @@ exports.deleteClassListByIdService = async (id) => {
     return result;
 };
 
+exports.updatePresentByIdService = async (id, data) => {
+    const result = await Class.updateOne(
+        { _id: id },
+        data,
+        {
+            runValidators: true,
+        }
+    );
+    return result;
+};
+

@@ -1,4 +1,4 @@
-const { createClassService, getAllClassService, getClassByIdService, deleteClassListByIdService } = require("../services/class.service");
+const { createClassService, getAllClassService, getClassByIdService, deleteClassListByIdService, updatePresentByIdService } = require("../services/class.service");
 
 exports.createClass = async (req, res) => {
     try {
@@ -21,7 +21,7 @@ exports.createClass = async (req, res) => {
 
 exports.getAllClass = async (req, res) => {
     try {
-     
+
         const data = await getAllClassService();
 
         res.status(200).json({
@@ -77,6 +77,26 @@ exports.deleteClassListById = async (req, res, next) => {
         res.status(400).json({
             status: "fail",
             message: "Couldn't delete the product",
+            error: error.message,
+        });
+    }
+};
+
+exports.updatePresentById = async (req, res, next) => {
+    try {
+        
+        const id = req.params.id;
+        const result = await updatePresentByIdService(id, req.body);
+        console.log("click", id, req.body);
+
+        res.status(200).json({
+            status: "success",
+            message: "Successfully updated the present",
+        })
+    } catch (error) {
+        res.status(400).json({
+            status: "fail",
+            message: "Couldn't update the present",
             error: error.message,
         });
     }

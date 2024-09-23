@@ -51,6 +51,12 @@ const classSchema = mongoose.Schema({
     currentDate: {
         type: String,
     },
+    absent: {
+        type: Number
+    },
+    present: {
+        type: Number
+    },
     groupChat: [{
         type: ObjectId,
         ref: "chatInfo"
